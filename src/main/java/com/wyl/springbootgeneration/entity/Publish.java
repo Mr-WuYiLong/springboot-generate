@@ -3,6 +3,9 @@ package com.wyl.springbootgeneration.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 /**
  * <p>
@@ -10,8 +13,10 @@ import java.io.Serializable;
  * </p>
  *
  * @author wuyilong
- * @since 2020-09-03
+ * @since 2020-09-04
  */
+@Data
+@Accessors(chain = true)
 public class Publish implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -107,154 +112,5 @@ public class Publish implements Serializable {
      */
     private String internationalPublication;
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    public String getApplyId() {
-        return applyId;
-    }
-
-    public void setApplyId(String applyId) {
-        this.applyId = applyId;
-    }
-    public String getPublishId() {
-        return publishId;
-    }
-
-    public void setPublishId(String publishId) {
-        this.publishId = publishId;
-    }
-    public String getApplyDate() {
-        return applyDate;
-    }
-
-    public void setApplyDate(String applyDate) {
-        this.applyDate = applyDate;
-    }
-    public String getApplyPublishDate() {
-        return applyPublishDate;
-    }
-
-    public void setApplyPublishDate(String applyPublishDate) {
-        this.applyPublishDate = applyPublishDate;
-    }
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-    public String getClassificationId() {
-        return classificationId;
-    }
-
-    public void setClassificationId(String classificationId) {
-        this.classificationId = classificationId;
-    }
-    public String getInventor() {
-        return inventor;
-    }
-
-    public void setInventor(String inventor) {
-        this.inventor = inventor;
-    }
-    public String getApplicant() {
-        return applicant;
-    }
-
-    public void setApplicant(String applicant) {
-        this.applicant = applicant;
-    }
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-    public String getAgency() {
-        return agency;
-    }
-
-    public void setAgency(String agency) {
-        this.agency = agency;
-    }
-    public String getAgent() {
-        return agent;
-    }
-
-    public void setAgent(String agent) {
-        this.agent = agent;
-    }
-    public String getPatentReferences() {
-        return patentReferences;
-    }
-
-    public void setPatentReferences(String patentReferences) {
-        this.patentReferences = patentReferences;
-    }
-    public String getPeriodicalReferences() {
-        return periodicalReferences;
-    }
-
-    public void setPeriodicalReferences(String periodicalReferences) {
-        this.periodicalReferences = periodicalReferences;
-    }
-    public String getExaminerName() {
-        return examinerName;
-    }
-
-    public void setExaminerName(String examinerName) {
-        this.examinerName = examinerName;
-    }
-    public String getNationalPhaseDate() {
-        return nationalPhaseDate;
-    }
-
-    public void setNationalPhaseDate(String nationalPhaseDate) {
-        this.nationalPhaseDate = nationalPhaseDate;
-    }
-    public String getInternationalApplication() {
-        return internationalApplication;
-    }
-
-    public void setInternationalApplication(String internationalApplication) {
-        this.internationalApplication = internationalApplication;
-    }
-    public String getInternationalPublication() {
-        return internationalPublication;
-    }
-
-    public void setInternationalPublication(String internationalPublication) {
-        this.internationalPublication = internationalPublication;
-    }
-
-    @Override
-    public String toString() {
-        return "Publish{" +
-            "id=" + id +
-            ", applyId=" + applyId +
-            ", publishId=" + publishId +
-            ", applyDate=" + applyDate +
-            ", applyPublishDate=" + applyPublishDate +
-            ", title=" + title +
-            ", classificationId=" + classificationId +
-            ", inventor=" + inventor +
-            ", applicant=" + applicant +
-            ", address=" + address +
-            ", agency=" + agency +
-            ", agent=" + agent +
-            ", patentReferences=" + patentReferences +
-            ", periodicalReferences=" + periodicalReferences +
-            ", examinerName=" + examinerName +
-            ", nationalPhaseDate=" + nationalPhaseDate +
-            ", internationalApplication=" + internationalApplication +
-            ", internationalPublication=" + internationalPublication +
-        "}";
-    }
 }

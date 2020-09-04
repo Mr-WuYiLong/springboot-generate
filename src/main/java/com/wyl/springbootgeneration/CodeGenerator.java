@@ -82,22 +82,25 @@ public class CodeGenerator {
         }
         });
 
-
-        /*
-        cfg.setFileCreate(new IFileCreate() {
-        @Override
-        public boolean isCreate(ConfigBuilder configBuilder, FileType fileType, String filePath) {
-        // 判断自定义文件夹是否需要创建
-        checkDir("调用默认方法创建的目录，自定义目录用");
-        if (fileType == FileType.MAPPER) {
-            // 已经生成 mapper 文件判断存在，不想重新生成返回 false
-            return !new File(filePath).exists();
-        }
-        // 允许生成模板文件
-        return true;
-        }
+        // service
+        templatePath = "/templates/service.java.ftl";
+        focList.add(new FileOutConfig(templatePath) {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                return projectPath+"/src/main/java/com/wyl/springbootgeneration/service/"+tableInfo.getServiceName()+StringPool.DOT_JAVA;
+            }
         });
-        */
+
+        // serviceImpl
+        templatePath = "/templates/serviceImpl.java.ftl";
+        focList.add(new FileOutConfig(templatePath) {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                return projectPath+"/src/main/java/com/wyl/springbootgeneration/service/impl/"+tableInfo.getServiceImplName()+StringPool.DOT_JAVA;
+            }
+        });
+
+
         cfg.setFileOutConfigList(focList);
         mpg.setCfg(cfg);
 
@@ -111,6 +114,8 @@ public class CodeGenerator {
         // templateConfig.setController();
 
         templateConfig.setXml(null);
+        templateConfig.setService(null);
+        templateConfig.setServiceImpl(null);
         mpg.setTemplate(templateConfig);
 
         // 策略配置
@@ -119,6 +124,8 @@ public class CodeGenerator {
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         //        strategy.setSuperEntityClass("你自己的父类实体,没有就不用设置!");
         strategy.setEntityLombokModel(true);
+        strategy.setChainModel(true);
+
 //        strategy.setRestControllerStyle(true);
         // 公共父类
         //        strategy.setSuperControllerClass("你自己的父类控制器,没有就不用设置!");

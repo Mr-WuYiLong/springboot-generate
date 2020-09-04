@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
  * </p>
  *
  * @author wuyilong
- * @since 2020-09-03
+ * @since 2020-09-04
  */
 @Service
-public class ExistenceServiceImpl extends ServiceImpl<ExistenceMapper, Existence> implements ExistenceService {
+public class ExistenceServiceImpl implements ExistenceService {
 
 }

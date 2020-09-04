@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author wuyilong
- * @since 2020-09-03
+ * @since 2020-09-04
  */
-public interface PublishService extends IService<Publish> {
+public interface PublishService {
 
 }

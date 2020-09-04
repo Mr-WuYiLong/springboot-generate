@@ -3,6 +3,9 @@ package com.wyl.springbootgeneration.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 /**
  * <p>
@@ -10,8 +13,10 @@ import java.io.Serializable;
  * </p>
  *
  * @author wuyilong
- * @since 2020-09-03
+ * @since 2020-09-04
  */
+@Data
+@Accessors(chain = true)
 public class Existence implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -27,26 +32,5 @@ public class Existence implements Serializable {
      */
     private String number;
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
-
-    @Override
-    public String toString() {
-        return "Existence{" +
-            "id=" + id +
-            ", number=" + number +
-        "}";
-    }
 }

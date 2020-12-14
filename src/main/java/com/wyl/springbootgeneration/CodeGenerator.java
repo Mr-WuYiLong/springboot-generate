@@ -19,6 +19,11 @@ import java.util.List;
  */
 public class CodeGenerator {
 
+    // 表前缀
+    private static final String TABLE_PREFIX = "d_,e_";
+    //表名
+    private static final String TABLE_NAMES = "e_expert,d_hat";
+
 
     public static void main(String[] args) {
         // 代码生成器
@@ -28,6 +33,7 @@ public class CodeGenerator {
         GlobalConfig gc = new GlobalConfig();
 
         String projectPath = System.getProperty("user.dir");
+        // 输出路径
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor("wuyilong");
         gc.setOpen(false);
@@ -44,11 +50,11 @@ public class CodeGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://localhost:3306/boshi?useUnicode=true&useSSL=false&characterEncoding=utf8&&serverTimezone=UTC&&allowPublicKeyRetrieval=true");
+        dsc.setUrl("jdbc:mysql://192.168.0.95:23306/quchuang_kaifa?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC&allowPublicKeyRetrieval=true");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("root");
+        dsc.setPassword("123456");
         mpg.setDataSource(dsc);
 
         // 包配置
@@ -82,23 +88,23 @@ public class CodeGenerator {
         }
         });
 
-        // service
-        templatePath = "/templates/service.java.ftl";
-        focList.add(new FileOutConfig(templatePath) {
-            @Override
-            public String outputFile(TableInfo tableInfo) {
-                return projectPath+"/src/main/java/com/wyl/springbootgeneration/service/"+tableInfo.getServiceName()+StringPool.DOT_JAVA;
-            }
-        });
-
-        // serviceImpl
-        templatePath = "/templates/serviceImpl.java.ftl";
-        focList.add(new FileOutConfig(templatePath) {
-            @Override
-            public String outputFile(TableInfo tableInfo) {
-                return projectPath+"/src/main/java/com/wyl/springbootgeneration/service/impl/"+tableInfo.getServiceImplName()+StringPool.DOT_JAVA;
-            }
-        });
+//        // service
+//        templatePath = "/templates/service.java.ftl";
+//        focList.add(new FileOutConfig(templatePath) {
+//            @Override
+//            public String outputFile(TableInfo tableInfo) {
+//                return projectPath+"/src/main/java/com/wyl/springbootgeneration/service/"+tableInfo.getServiceName()+StringPool.DOT_JAVA;
+//            }
+//        });
+//
+//        // serviceImpl
+//        templatePath = "/templates/serviceImpl.java.ftl";
+//        focList.add(new FileOutConfig(templatePath) {
+//            @Override
+//            public String outputFile(TableInfo tableInfo) {
+//                return projectPath+"/src/main/java/com/wyl/springbootgeneration/service/impl/"+tableInfo.getServiceImplName()+StringPool.DOT_JAVA;
+//            }
+//        });
 
 
         cfg.setFileOutConfigList(focList);
@@ -114,27 +120,32 @@ public class CodeGenerator {
         // templateConfig.setController();
 
         templateConfig.setXml(null);
-        templateConfig.setService(null);
-        templateConfig.setServiceImpl(null);
+        templateConfig.setMapper("templates/mapper.java");
+        templateConfig.setEntity("templates/entity.java");
+        templateConfig.setService("templates/service.java");
+        templateConfig.setServiceImpl("templates/serviceImpl.java");
         mpg.setTemplate(templateConfig);
 
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
+
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         //        strategy.setSuperEntityClass("你自己的父类实体,没有就不用设置!");
         strategy.setEntityLombokModel(true);
         strategy.setChainModel(true);
-
-//        strategy.setRestControllerStyle(true);
+        strategy.setEntitySerialVersionUID(true);
+        strategy.setEntityTableFieldAnnotationEnable(true);
+        strategy.setChainModel(true);
+        strategy.setRestControllerStyle(true);
         // 公共父类
         //        strategy.setSuperControllerClass("你自己的父类控制器,没有就不用设置!");
         // 写于父类中的公共字段
 //        strategy.setSuperEntityColumns("id");
 
-        strategy.setInclude("publish,existence".split(","));
+        strategy.setInclude(TABLE_NAMES.split(","));
         strategy.setControllerMappingHyphenStyle(true);
-        strategy.setTablePrefix(pc.getModuleName() + "_");
+        strategy.setTablePrefix(TABLE_PREFIX.split(","));
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());
         mpg.execute();

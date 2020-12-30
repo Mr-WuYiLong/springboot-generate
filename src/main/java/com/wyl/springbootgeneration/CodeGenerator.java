@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
 import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
+import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import com.baomidou.mybatisplus.core.toolkit.StringPool;
@@ -20,9 +21,12 @@ import java.util.List;
 public class CodeGenerator {
 
     // 表前缀
-    private static final String TABLE_PREFIX = "d_,e_";
+    private static final String TABLE_PREFIX = "d_,e_,t_,qc_";
     //表名
-    private static final String TABLE_NAMES = "e_expert,d_hat";
+    private static final String TABLE_NAMES =
+            "e_expert,d_hat,e_platformtype_department," +
+            "t_intellectual_property_enterprise_count_year_stat," +
+            "qc_software_copyright,d_enterprise_highly,";
 
 
     public static void main(String[] args) {
@@ -36,6 +40,8 @@ public class CodeGenerator {
         // 输出路径
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor("wuyilong");
+        gc.setDateType(DateType.ONLY_DATE);
+        gc.setFileOverride(true);
         gc.setOpen(false);
         gc.setBaseResultMap(true);// XML ResultMap
         gc.setBaseColumnList(true);// XML columList
@@ -50,8 +56,9 @@ public class CodeGenerator {
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://192.168.0.95:23306/quchuang_kaifa?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC&allowPublicKeyRetrieval=true");
+//        dsc.setUrl("jdbc:mysql://192.168.0.95:23306/quchuang_kaifa?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC&allowPublicKeyRetrieval=true");
         // dsc.setSchemaName("public");
+        dsc.setUrl("jdbc:mysql://localhost:3306/blog?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("123456");
@@ -128,7 +135,6 @@ public class CodeGenerator {
 
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
-
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         //        strategy.setSuperEntityClass("你自己的父类实体,没有就不用设置!");
@@ -138,12 +144,14 @@ public class CodeGenerator {
         strategy.setEntityTableFieldAnnotationEnable(true);
         strategy.setChainModel(true);
         strategy.setRestControllerStyle(true);
+
         // 公共父类
         //        strategy.setSuperControllerClass("你自己的父类控制器,没有就不用设置!");
         // 写于父类中的公共字段
 //        strategy.setSuperEntityColumns("id");
 
-        strategy.setInclude(TABLE_NAMES.split(","));
+        strategy.setEntityTableFieldAnnotationEnable(true);
+        strategy.setInclude("d_schedule_task".split(","));
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setTablePrefix(TABLE_PREFIX.split(","));
         mpg.setStrategy(strategy);

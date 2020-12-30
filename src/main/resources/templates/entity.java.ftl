@@ -33,6 +33,8 @@ import lombok.experimental.Accessors;
 </#if>
 <#if table.convert>
 @TableName("${table.name}")
+@Entity
+@Table(name="${table.name}")
 </#if>
 <#if swagger2>
 @ApiModel(value="${entity}对象", description="${table.comment!}")
@@ -67,6 +69,8 @@ public class ${entity} implements Serializable {
         <#-- 主键 -->
         <#if field.keyIdentityFlag>
     @TableId(value = "${field.annotationColumnName}", type = IdType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
         <#elseif idType??>
     @TableId(value = "${field.annotationColumnName}", type = IdType.${idType})
         <#elseif field.convert>

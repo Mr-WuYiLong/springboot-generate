@@ -26,7 +26,9 @@ public class CodeGenerator {
     private static final String TABLE_NAMES =
             "e_expert,d_hat,e_platformtype_department," +
             "t_intellectual_property_enterprise_count_year_stat," +
-            "qc_software_copyright,d_enterprise_highly,";
+            "qc_software_copyright,d_enterprise_highly," +
+                    "d_schedule_log,d_simula_policy," +
+                    "d_home_hat,t_intellectual_property_all_part_clean,d_hat_type,d_es_search_field,d_listed_company,d_temp_filter_enterprise";
 
 
     public static void main(String[] args) {
@@ -41,7 +43,7 @@ public class CodeGenerator {
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor("wuyilong");
         gc.setDateType(DateType.ONLY_DATE);
-        gc.setFileOverride(true);
+//        gc.setFileOverride(true);
         gc.setOpen(false);
         gc.setBaseResultMap(true);// XML ResultMap
         gc.setBaseColumnList(true);// XML columList
@@ -50,15 +52,17 @@ public class CodeGenerator {
         gc.setControllerName("%sController");
         gc.setServiceName("%sService");
         gc.setServiceImplName("%sServiceImpl");
-        gc.setMapperName("%sMapper");
+//        gc.setMapperName("%sMapper");
+        gc.setMapperName("%sDao");
+
         gc.setXmlName("%sMapper");
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-//        dsc.setUrl("jdbc:mysql://192.168.0.95:23306/quchuang_kaifa?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC&allowPublicKeyRetrieval=true");
+        dsc.setUrl("jdbc:mysql://192.168.0.95:23306/quchuang_zhengshi?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC&allowPublicKeyRetrieval=true");
         // dsc.setSchemaName("public");
-        dsc.setUrl("jdbc:mysql://localhost:3306/blog?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8");
+//        dsc.setUrl("jdbc:mysql://localhost:3306/blog?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("123456");
@@ -151,7 +155,7 @@ public class CodeGenerator {
 //        strategy.setSuperEntityColumns("id");
 
         strategy.setEntityTableFieldAnnotationEnable(true);
-        strategy.setInclude("d_schedule_task".split(","));
+        strategy.setInclude(TABLE_NAMES.split(","));
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setTablePrefix(TABLE_PREFIX.split(","));
         mpg.setStrategy(strategy);

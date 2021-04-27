@@ -2,6 +2,7 @@ package ${package.Entity};
 
 <#list table.importPackages as pkg>
 import ${pkg};
+import javax.persistence.*;
 </#list>
 <#if swagger2>
 import io.swagger.annotations.ApiModel;
@@ -13,6 +14,7 @@ import lombok.EqualsAndHashCode;
     <#if chainModel>
 import lombok.experimental.Accessors;
     </#if>
+    import javax.persistence.*;
 </#if>
 
 /**

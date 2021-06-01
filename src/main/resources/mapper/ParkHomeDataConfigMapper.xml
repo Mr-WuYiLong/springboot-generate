@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wyl.springbootgeneration.mapper.ParkHomeDataConfigDao">
+
+        <!-- 通用查询映射结果 -->
+        <resultMap id="BaseResultMap" type="com.wyl.springbootgeneration.entity.ParkHomeDataConfig">
+                    <id column="id" property="id" />
+                    <result column="create_time" property="createTime" />
+                    <result column="create_user_id" property="createUserId" />
+                    <result column="deleted" property="deleted" />
+                    <result column="department_id" property="departmentId" />
+                    <result column="update_time" property="updateTime" />
+                    <result column="update_user_id" property="updateUserId" />
+                    <result column="uuid" property="uuid" />
+                    <result column="version" property="version" />
+                    <result column="park_base_data_json" property="parkBaseDataJson" />
+                    <result column="park_map_json" property="parkMapJson" />
+                    <result column="module1" property="module1" />
+                    <result column="module2" property="module2" />
+                    <result column="module3" property="module3" />
+                    <result column="module4" property="module4" />
+                    <result column="module5" property="module5" />
+                    <result column="module6" property="module6" />
+                    <result column="module7" property="module7" />
+                    <result column="module8" property="module8" />
+                    <result column="park_other_json" property="parkOtherJson" />
+        </resultMap>
+
+        <!-- 通用查询结果列 -->
+        <sql id="Base_Column_List">
+            id, create_time, create_user_id, deleted, department_id, update_time, update_user_id, uuid, version, park_base_data_json, park_map_json, module1, module2, module3, module4, module5, module6, module7, module8, park_other_json
+        </sql>
+
+</mapper>

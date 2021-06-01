@@ -23,12 +23,7 @@ public class CodeGenerator {
     // 表前缀
     private static final String TABLE_PREFIX = "d_,e_,t_,qc_";
     //表名
-    private static final String TABLE_NAMES =
-            "e_expert,d_hat,e_platformtype_department," +
-            "t_intellectual_property_enterprise_count_year_stat," +
-            "qc_software_copyright,d_enterprise_highly," +
-                    "d_schedule_log,d_simula_policy," +
-                    "d_home_hat,t_intellectual_property_all_part_clean,d_hat_type,d_es_search_field,d_listed_company,d_temp_filter_enterprise";
+    private static final String TABLE_NAMES = "d_park_home_data_config";
 
 
     public static void main(String[] args) {

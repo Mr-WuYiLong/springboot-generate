@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
- * 定时任务表 前端控制器
+ *  前端控制器
  * </p>
  *
  * @author wuyilong
- * @since 2020-12-30
+ * @since 2021-05-17
  */
 @RestController
-@RequestMapping("/springbootgeneration/schedule-task")
-public class ScheduleTaskController {
+@RequestMapping("/springbootgeneration/park-home-data-config")
+public class ParkHomeDataConfigController {
 
 }

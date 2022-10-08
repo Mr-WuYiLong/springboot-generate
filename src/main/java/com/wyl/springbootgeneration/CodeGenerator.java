@@ -14,16 +14,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @Description
+ * @Description  支持 mybatis-plus-generator 3.4.0
  * @Author YiLong Wu
  * @Date {DATE} {TIME}
  */
 public class CodeGenerator {
 
     // 表前缀
-    private static final String TABLE_PREFIX = "d_,e_,t_,qc_";
+    private static final String TABLE_PREFIX = "qc_,d_,p_,t_,e_,p_,qcc_,m_";
     //表名
-    private static final String TABLE_NAMES = "d_park_home_data_config";
+    private static final String TABLE_NAMES =
+            "e_enterprise_shareholder,e_enterprise_out_investment,e_enterprise_main_member," +
+                    "e_enterprise_change_record,e_enterprise_branch,e_enterprise_administrative_license" +
+                    ",e_enterprise_credit_evaluation,e_enterprise_credit_evaluation_env,e_enterprise_tender," +
+                    "e_enterprise_job,e_enterprise_im_ex_credit,e_enterprise_supplier,e_enterprise_customer,e_enterprise_finance," +
+                    "e_enterprise_billboard,e_enterprise_honor,d_enterprise_features,e_enterprise_certificate,e_enterprise_soft," +
+                    "e_enterprise_standard,e_enterprise_trademark,e_enterprise_judicial_case,e_enterprise_executed_person,e_enterprise_judgment_doc," +
+                    "e_enterprise_abnormal_operation,e_enterprise_equity_pledge,e_enterprise_assistance,e_enterprise_share_pledge,e_enterprise_penalties," +
+                    "e_enterprise_promise,e_enterprise_judicial_sale,e_enterprise_serious_violation,e_enterprise_mortgage,e_enterprise_court_announce," +
+                    "e_enterprise_hear_announcement,e_enterprise_file_info,e_enterprise_land_mortgage,m_talent,t_talent";
 
 
     public static void main(String[] args) {
@@ -48,14 +57,15 @@ public class CodeGenerator {
         gc.setServiceName("%sService");
         gc.setServiceImplName("%sServiceImpl");
 //        gc.setMapperName("%sMapper");
-        gc.setMapperName("%sDao");
+        gc.setMapperName("%sMapper");
 
         gc.setXmlName("%sMapper");
+        gc.setActiveRecord(true);
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://192.168.0.95:23306/quchuang_zhengshi?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC&allowPublicKeyRetrieval=true");
+        dsc.setUrl("jdbc:mysql://localhost:3306/blog?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC&allowPublicKeyRetrieval=true");
         // dsc.setSchemaName("public");
 //        dsc.setUrl("jdbc:mysql://localhost:3306/blog?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
@@ -138,7 +148,7 @@ public class CodeGenerator {
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         //        strategy.setSuperEntityClass("你自己的父类实体,没有就不用设置!");
         strategy.setEntityLombokModel(true);
-        strategy.setChainModel(true);
+//        strategy.setChainModel(true);
         strategy.setEntitySerialVersionUID(true);
         strategy.setEntityTableFieldAnnotationEnable(true);
         strategy.setChainModel(true);
@@ -153,6 +163,7 @@ public class CodeGenerator {
         strategy.setInclude(TABLE_NAMES.split(","));
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setTablePrefix(TABLE_PREFIX.split(","));
+
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());
         mpg.execute();

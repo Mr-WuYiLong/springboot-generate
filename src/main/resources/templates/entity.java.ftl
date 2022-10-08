@@ -68,7 +68,7 @@ public class ${entity} implements Serializable {
         </#if>
     </#if>
     <#if field.keyFlag>
-        <#-- 主键 -->
+        <#-- 主键,需自增 -->
         <#if field.keyIdentityFlag>
     @TableId(value = "${field.annotationColumnName}", type = IdType.AUTO)
     @Id

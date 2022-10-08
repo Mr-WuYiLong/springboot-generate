@@ -36,4 +36,20 @@
         </sql>
 
     </#if>
+
+    <insert id="insert" parameterType="${package.Entity}.${entity}" >
+        insert into ${table.name}(
+        ${table.fieldNames}
+        <#list table.commonFields as field>
+        ${field.columnName},
+        </#list>
+        )
+        values (
+        <#list table.fields as field>
+           ${"#\{"+field.propertyName+"}"},
+        </#list>
+        )
+    </insert>
+
+
 </mapper>

@@ -11,13 +11,10 @@ import ${superControllerClassPackage};
 </#if>
 
 /**
- * <p>
- * ${table.comment!} 前端控制器
- * </p>
- *
- * @author ${author}
- * @since ${date}
- */
+* @Description ${table.comment}
+* @Author ${author}
+* @Date ${date}
+*/
 <#if restControllerStyle>
 @RestController
 <#else>

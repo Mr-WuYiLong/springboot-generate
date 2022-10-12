@@ -5,7 +5,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>generation1</module>
-        <module>generation2</module>
+        <module>generation3</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

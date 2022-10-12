@@ -1,4 +1,4 @@
-package com.wyl.springbootgeneration;
+package com.wyl;
 
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
@@ -11,7 +11,7 @@ import java.util.Collections;
  * @Author WuYiLong
  * @Date 2022/9/8 9:33
  */
-public class CodeGenerator2 {
+public class CodeGenerator3 {
 
     public static void main(String[] args) {
 
@@ -22,26 +22,32 @@ public class CodeGenerator2 {
         FastAutoGenerator.create(url, username, password)
                 .globalConfig(builder -> {
                     builder.author("wuyilong") // 设置作者
-//                            .enableSwagger() // 开启 swagger 模式
-                            .fileOverride() // 覆盖已生成文件
-                            .outputDir("E:\\company\\java\\project\\springboot-generation\\src\\main\\java")
+
+                            .outputDir("E:\\company\\java\\project\\springboot-generation\\generation3\\src\\main\\java")
                             .disableOpenDir(); // 指定输出目录
                 })
                 .packageConfig(builder -> {
-                    builder.parent("com.wyl.springbootgeneration")
-                            .pathInfo(Collections.singletonMap(OutputFile.xml,"E:\\company\\java\\project\\springboot-generation\\src\\main\\resources\\mapper"));
+                    builder.parent("com.wyl")
+                            .pathInfo(Collections.singletonMap(OutputFile.xml,"E:\\company\\java\\project\\springboot-generation\\generation3\\src\\main\\resources\\mapper"));
                 })
                 .strategyConfig(builder -> {
                     builder.addInclude("e_enterprise") // 设置需要生成的表名
-                            .addTablePrefix("b_","e_"); // 设置过滤表前缀
+                            .addTablePrefix("b_","e_")
+                            .entityBuilder().enableLombok().enableRemoveIsPrefix().enableActiveRecord().enableTableFieldAnnotation().fileOverride()
+                            .mapperBuilder().enableBaseResultMap().enableBaseColumnList().enableMapperAnnotation().fileOverride()
+                            .serviceBuilder().formatServiceFileName("%sService").fileOverride()
+                            .controllerBuilder().enableRestStyle().fileOverride();
                 })
-                .templateConfig(template->{
-                    template.entity("/templates/entity.java")
+                .templateConfig(builder->{
+                    builder.entity("/templates/entity.java")
                             .mapper("/templates/mapper.java")
                             .xml("/templates/mapper.xml")
                             .service("/templates/service.java")
                             .serviceImpl("/templates/serviceImpl.java")
                             .controller("/templates/controller.java");
+                })
+                .injectionConfig(builder->{
+                    builder.fileOverride();
                 })
                 .templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板
                 .execute();

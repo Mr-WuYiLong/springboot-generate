@@ -7,7 +7,7 @@
     <cache type="${cacheClassName}"/>
 
 </#if>
-<#if true>
+<#if baseResultMap>
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="${package.Entity}.${entity}">
 <#list table.fields as field>
@@ -26,7 +26,7 @@
     </resultMap>
 
 </#if>
-<#if true>
+<#if baseColumnList>
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
 <#list table.commonFields as field>

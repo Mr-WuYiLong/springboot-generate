@@ -1,5 +1,5 @@
 package ${package.Entity};
-
+import javax.persistence.*;
 <#list table.importPackages as pkg>
 import ${pkg};
 </#list>
@@ -8,30 +8,27 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 </#if>
 <#if entityLombokModel>
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
     <#if chainModel>
 import lombok.experimental.Accessors;
     </#if>
 </#if>
 
 /**
- * <p>
- * ${table.comment!}
- * </p>
- *
- * @author ${author}
- * @since ${date}
+ * @Description ${table.comment}
+ * @Author ${author}
+ * @Date ${date}
  */
 <#if entityLombokModel>
-@Getter
-@Setter
+@Data
     <#if chainModel>
 @Accessors(chain = true)
     </#if>
 </#if>
 <#if table.convert>
-@TableName("${schemaName}${table.name}")
+@TableName("${table.name}")
+@Entity
+@Table(name="${table.name}")
 </#if>
 <#if swagger>
 @ApiModel(value = "${entity}对象", description = "${table.comment!}")
@@ -68,6 +65,8 @@ public class ${entity} {
         <#-- 主键 -->
         <#if field.keyIdentityFlag>
     @TableId(value = "${field.annotationColumnName}", type = IdType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
         <#elseif idType??>
     @TableId(value = "${field.annotationColumnName}", type = IdType.${idType})
         <#elseif field.convert>

@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
   <parent>
     <artifactId>springboot-generation</artifactId>
     <groupId>com.wyl</groupId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.wyl</groupId>
+  <artifactId>generation3</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
 
-  <artifactId>generation2</artifactId>
-
-  <name>generation2</name>
+  <name>generation3</name>
 
   <dependencies>
     <dependency>
@@ -21,10 +22,12 @@
     <dependency>
       <groupId>com.baomidou</groupId>
       <artifactId>mybatis-plus-boot-starter</artifactId>
+      <version>3.5.2</version>
     </dependency>
     <dependency>
       <groupId>com.baomidou</groupId>
       <artifactId>mybatis-plus-generator</artifactId>
+      <version>3.5.2</version>
     </dependency>
     <dependency>
       <groupId>org.freemarker</groupId>
@@ -49,6 +52,4 @@
 
 
   </dependencies>
-
-
 </project>

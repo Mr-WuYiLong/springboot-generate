@@ -52,4 +52,24 @@
 
 
   </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <!-- 你的主类名Main , 如果你的主类名在 com.cnblogs.i 下，那么这里就是 com.cnblogs.i.Main -->
+              <mainClass>com.wyl.CodeGenerator3</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+
+      </plugin>
+    </plugins>
+  </build>
+
 </project>

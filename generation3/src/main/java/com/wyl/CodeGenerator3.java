@@ -4,7 +4,9 @@ import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * @Description 支持 mybatis-plus-generator 3.5.1 及其以上版本
@@ -13,12 +15,47 @@ import java.util.Collections;
  */
 public class CodeGenerator3 {
 
+    private static List<String> tableList = Arrays.asList("udf_dic_map_area",
+            "udf_dic_map_industry","udf_dic_map_domain","d_enterprise_investment_evaluation","d_domain_link","d_enterprise_sort","rs_expert","d_policy");
+
     public static void main(String[] args) {
 
 
-        String url = "jdbc:mysql://localhost:3306/blog?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8";
+//        String url = "jdbc:mysql://192.168.0.46:3306/db_df_enterprise?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8";
+//        String username = "root";
+//        String password = "Boshi@888";
+
+//        String url = "jdbc:mysql://192.168.0.54:3306/db_df_enterprise?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8";
+//        String username = "root";
+//        String password = "root_I12013#";
+
+//        String url = "jdbc:mysql://192.168.0.42:3306/db_df_enterprise?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8";
+//        String username = "root";
+//        String password = "root_I12013#";
+
+//        String url = "jdbc:mysql://192.168.0.44:3306/db_df_possible_relation?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8";
+//        String username = "root";
+//        String password = "root_I12013#";
+//        String url = "jdbc:mysql://localhost:3306/blog?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8";
+//        String username = "root";
+//        String password = "123456";
+
+        String url = "jdbc:mysql://192.168.0.24:3306/datacenter-biz?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8";
         String username = "root";
-        String password = "123456";
+        String password = "Boshi@888";
+
+//        String url = "jdbc:mysql://121.37.224.225/quchuang_zhengshi?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8";
+//        String username = "quchuang";
+//        String password = "Quchuang@888";
+
+//        String url = "jdbc:mysql://192.168.0.95:23306/investment_bank?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8";
+//        String username = "root";
+//        String password = "123456";
+
+//        String url = "jdbc:mysql://192.168.0.49:3306/business-platform-common?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8";
+//        String username = "root";
+//        String password = "boshikeji";
+
         FastAutoGenerator.create(url, username, password)
                 .globalConfig(builder -> {
                     builder.author("wuyilong") // 设置作者
@@ -31,8 +68,8 @@ public class CodeGenerator3 {
                             .pathInfo(Collections.singletonMap(OutputFile.xml,"E:\\company\\java\\project\\springboot-generation\\generation3\\src\\main\\resources\\mapper"));
                 })
                 .strategyConfig(builder -> {
-                    builder.addInclude("e_enterprise") // 设置需要生成的表名
-                            .addTablePrefix("b_","e_")
+                    builder.addInclude(tableList) // 设置需要生成的表名
+                            .addTablePrefix("b_","e_","t_","d_")
                             .entityBuilder().enableLombok().enableRemoveIsPrefix().enableActiveRecord().enableTableFieldAnnotation().fileOverride()
                             .mapperBuilder().enableBaseResultMap().enableBaseColumnList().enableMapperAnnotation().fileOverride()
                             .serviceBuilder().formatServiceFileName("%sService").fileOverride()

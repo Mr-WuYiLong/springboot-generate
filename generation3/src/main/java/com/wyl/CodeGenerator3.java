@@ -15,8 +15,7 @@ import java.util.List;
  */
 public class CodeGenerator3 {
 
-    private static List<String> tableList = Arrays.asList("udf_dic_map_area",
-            "udf_dic_map_industry","udf_dic_map_domain","d_enterprise_investment_evaluation","d_domain_link","d_enterprise_sort","rs_expert","d_policy");
+    private static List<String> tableList = Arrays.asList("t_possible_relation_0");
 
     public static void main(String[] args) {
 
@@ -29,6 +28,10 @@ public class CodeGenerator3 {
 //        String username = "root";
 //        String password = "root_I12013#";
 
+        String url = "jdbc:mysql://192.168.0.56:3306/db_df_possible_relation?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8";
+        String username = "root";
+        String password = "root_I12013#";
+
 //        String url = "jdbc:mysql://192.168.0.42:3306/db_df_enterprise?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8";
 //        String username = "root";
 //        String password = "root_I12013#";
@@ -39,10 +42,10 @@ public class CodeGenerator3 {
 //        String url = "jdbc:mysql://localhost:3306/blog?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8";
 //        String username = "root";
 //        String password = "123456";
-
-        String url = "jdbc:mysql://192.168.0.24:3306/datacenter-biz?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8";
-        String username = "root";
-        String password = "Boshi@888";
+//
+//        String url = "jdbc:mysql://192.168.0.46:3306/db_algorithm?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8";
+//        String username = "root";
+//        String password = "Boshi@888";
 
 //        String url = "jdbc:mysql://121.37.224.225/quchuang_zhengshi?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8";
 //        String username = "quchuang";
@@ -56,16 +59,23 @@ public class CodeGenerator3 {
 //        String username = "root";
 //        String password = "boshikeji";
 
+//        String url = "jdbc:mysql://192.168.0.25:3306/datacenter-patent?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8";
+//        String username = "root";
+//        String password = "Boshi@888";
+
         FastAutoGenerator.create(url, username, password)
                 .globalConfig(builder -> {
                     builder.author("wuyilong") // 设置作者
 
-                            .outputDir("E:\\company\\java\\project\\springboot-generation\\generation3\\src\\main\\java")
+//                            .outputDir("E:\\company\\java\\project\\springboot-generation\\generation3\\src\\main\\java")
+                            .outputDir("/Users/yilongwu/long/git/springboot-generate/generation3/src/main/java")
                             .disableOpenDir(); // 指定输出目录
+
                 })
                 .packageConfig(builder -> {
                     builder.parent("com.wyl")
-                            .pathInfo(Collections.singletonMap(OutputFile.xml,"E:\\company\\java\\project\\springboot-generation\\generation3\\src\\main\\resources\\mapper"));
+                            .pathInfo(Collections.singletonMap(OutputFile.xml,"/Users/yilongwu/long/git/springboot-generate/generation3/src/main/resources/mapper"));
+//                            .pathInfo(Collections.singletonMap(OutputFile.xml,"E:\\company\\java\\project\\springboot-generation\\generation3\\src\\main\\resources\\mapper"));
                 })
                 .strategyConfig(builder -> {
                     builder.addInclude(tableList) // 设置需要生成的表名

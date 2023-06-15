@@ -3,10 +3,10 @@ package com.wyl;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import com.google.common.collect.Maps;
+import com.wyl.common.EnhanceFreemarkerTemplateEngine;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * @Description 支持 mybatis-plus-generator 3.5.1 及其以上版本
@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class CodeGenerator3 {
 
-    private static List<String> tableList = Arrays.asList("t_possible_relation_0");
+    private static List<String> tableList = Arrays.asList("d_enterprise_base_ganzhou");
 
     public static void main(String[] args) {
 
@@ -28,9 +28,9 @@ public class CodeGenerator3 {
 //        String username = "root";
 //        String password = "root_I12013#";
 
-        String url = "jdbc:mysql://192.168.0.56:3306/db_df_possible_relation?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8";
-        String username = "root";
-        String password = "root_I12013#";
+//        String url = "jdbc:mysql://192.168.0.56:3306/db_df_possible_relation?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8";
+//        String username = "root";
+//        String password = "root_I12013#";
 
 //        String url = "jdbc:mysql://192.168.0.42:3306/db_df_enterprise?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8";
 //        String username = "root";
@@ -39,9 +39,9 @@ public class CodeGenerator3 {
 //        String url = "jdbc:mysql://192.168.0.44:3306/db_df_possible_relation?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8";
 //        String username = "root";
 //        String password = "root_I12013#";
-//        String url = "jdbc:mysql://localhost:3306/blog?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8";
-//        String username = "root";
-//        String password = "123456";
+        String url = "jdbc:mysql://localhost:3306/study?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8";
+        String username = "root";
+        String password = "root";
 //
 //        String url = "jdbc:mysql://192.168.0.46:3306/db_algorithm?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8";
 //        String username = "root";
@@ -63,18 +63,26 @@ public class CodeGenerator3 {
 //        String username = "root";
 //        String password = "Boshi@888";
 
+//        String url = "jdbc:mysql://192.168.0.24:3306/datacenter-bizv1?zeroDateTimeBehavior=CONVERT_TO_NULL&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=GMT%2B8";
+//        String username = "root";
+//        String password = "Boshi@888";
+
         FastAutoGenerator.create(url, username, password)
                 .globalConfig(builder -> {
-                    builder.author("wuyilong") // 设置作者
+                    builder.author("wuyilong").enableSwagger() // 设置作者
 
 //                            .outputDir("E:\\company\\java\\project\\springboot-generation\\generation3\\src\\main\\java")
-                            .outputDir("/Users/yilongwu/long/git/springboot-generate/generation3/src/main/java")
+//
+                            .outputDir("/Users/wuyilong/long/home/git/springboot-generate/generation3/src/main/java")
                             .disableOpenDir(); // 指定输出目录
 
                 })
                 .packageConfig(builder -> {
                     builder.parent("com.wyl")
-                            .pathInfo(Collections.singletonMap(OutputFile.xml,"/Users/yilongwu/long/git/springboot-generate/generation3/src/main/resources/mapper"));
+                            .moduleName("business")
+                            .pathInfo(Collections.singletonMap(OutputFile.xml,"/Users/wuyilong/long/home/git/springboot-generate/generation3/src/main/resources/mapper"));
+
+//                            .pathInfo(Collections.singletonMap(OutputFile.xml,"/Users/yilongwu/long/git/springboot-generate/generation3/src/main/resources/mapper"));
 //                            .pathInfo(Collections.singletonMap(OutputFile.xml,"E:\\company\\java\\project\\springboot-generation\\generation3\\src\\main\\resources\\mapper"));
                 })
                 .strategyConfig(builder -> {
@@ -94,9 +102,14 @@ public class CodeGenerator3 {
                             .controller("/templates/controller.java");
                 })
                 .injectionConfig(builder->{
+                    Map<String, String> file = new HashMap<>();
+                    file.put("Dto.java","/templates/dto.java.ftl");
+                    file.put("Vo.java","/templates/vo.java.ftl");
+                    file.put("Req.java","/templates/req.java.ftl");
+                    builder.customFile(file);
                     builder.fileOverride();
                 })
-                .templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板
+                .templateEngine(new EnhanceFreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板
                 .execute();
 
     }

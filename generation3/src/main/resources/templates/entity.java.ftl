@@ -3,10 +3,10 @@ import javax.persistence.*;
 <#list table.importPackages as pkg>
 import ${pkg};
 </#list>
-<#if swagger>
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-</#if>
+<#--<#if swagger>-->
+<#--import io.swagger.annotations.ApiModel;-->
+<#--import io.swagger.annotations.ApiModelProperty;-->
+<#--</#if>-->
 <#if entityLombokModel>
 import lombok.Data;
     <#if chainModel>
@@ -30,9 +30,9 @@ import lombok.experimental.Accessors;
 @Entity
 @Table(name="${table.name}")
 </#if>
-<#if swagger>
-@ApiModel(value = "${entity}对象", description = "${table.comment!}")
-</#if>
+<#--<#if swagger>-->
+<#--@ApiModel(value = "${entity}对象", description = "${table.comment!}")-->
+<#--</#if>-->
 <#if superEntityClass??>
 public class ${entity} extends ${superEntityClass}<#if activeRecord><${entity}></#if> {
 <#elseif activeRecord>
@@ -53,13 +53,10 @@ public class ${entity} {
     </#if>
 
     <#if field.comment!?length gt 0>
-        <#if swagger>
-    @ApiModelProperty("${field.comment}")
-        <#else>
+
     /**
      * ${field.comment}
      */
-        </#if>
     </#if>
     <#if field.keyFlag>
         <#-- 主键 -->
